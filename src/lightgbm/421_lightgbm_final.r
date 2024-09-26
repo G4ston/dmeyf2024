@@ -19,7 +19,7 @@ PARAM$input$dataset <- "./datasets/competencia_01_polars.csv"
 PARAM$input$training <- c(202104) # meses donde se entrena el modelo
 PARAM$input$future <- c(202106) # meses donde se aplica el modelo
 
-
+## Parámetros iniciales
 PARAM$finalmodel$num_iterations <- 613
 PARAM$finalmodel$learning_rate <- 0.01
 PARAM$finalmodel$feature_fraction <- 0.5489793063
@@ -28,6 +28,14 @@ PARAM$finalmodel$num_leaves <- 928
 
 
 PARAM$finalmodel$max_bin <- 31
+
+## Parámetros propuestos optimizados
+# PARAM$finalmodel$num_iterations <- 250
+# PARAM$finalmodel$learning_rate <- 0.57
+# PARAM$finalmodel$feature_fraction <- 0.63
+# PARAM$finalmodel$min_data_in_leaf <- 31500
+# PARAM$finalmodel$num_leaves <- 525
+
 
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
