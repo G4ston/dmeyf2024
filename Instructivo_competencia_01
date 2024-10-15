@@ -1,4 +1,5 @@
-- Correr el script:
+1) Construir la clase ternaria con el script: polars_claseTernaria.ipynb
+2) Correr el script:
 421_lightgbm_final.r
 
 Semilla: 113149 (ya está inserta en el código.
