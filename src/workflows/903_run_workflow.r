@@ -23,7 +23,7 @@ correr_workflow <- function( wf_scriptname )
       envg$EXPENV$repo_dir,
       wf_scriptname,
       "   ",
-      wf_scriptname,
+      wf_scriptname, 
      "\n",
      "deactivate\n"
     )
