@@ -68,7 +68,7 @@ DT_incorporar_dataset <- function( arch_dataset )
   param_local$primarykey <- c("numero_de_cliente", "foto_mes" )
   param_local$entity_id <- c("numero_de_cliente" )
   param_local$periodo <- c("foto_mes" )
-  param_local$clase <- c("clase_ternaria" )
+  param_local$clase <- c("clase_ternaria")
   
   param_local$semilla <- NULL  # no usa semilla, es deterministico
   
@@ -151,9 +151,9 @@ FEhist_base <- function( pinputexps)
   param_local$Tendencias1$ratiomax <- FALSE
   
   # no me engraso las manos con las tendencias de segundo orden
-  param_local$Tendencias2$run <- FALSE
+  param_local$Tendencias2$run <- TRUE
   param_local$Tendencias2$ventana <- 12
-  param_local$Tendencias2$tendencia <- FALSE
+  param_local$Tendencias2$tendencia <- TRUE
   param_local$Tendencias2$minimo <- FALSE
   param_local$Tendencias2$maximo <- FALSE
   param_local$Tendencias2$promedio <- FALSE
@@ -177,8 +177,8 @@ FErf_attributes_base <- function( pinputexps, ratio, desvio)
   param_local$meta$script <- "/src/wf-etapas/z1311_FE_rfatributes.r"
   
   # Parametros de un LightGBM que se genera para estimar la column importance
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
-  param_local$train$training <- c( 202101, 202102, 202103, 202104, 202105, 202106)
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
+  param_local$train$training <- c( 202101, 202102, 202103)
   
   # parametros para que LightGBM se comporte como Random Forest
   param_local$lgb_param <- list(
@@ -235,10 +235,10 @@ CN_canaritos_asesinos_base <- function( pinputexps, ratio, desvio)
   param_local$meta$script <- "/src/wf-etapas/z1601_CN_canaritos_asesinos.r"
   
   # Parametros de un LightGBM que se genera para estimar la column importance
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
   param_local$train$positivos <- c( "BAJA+2")
-  param_local$train$training <- c( 202101, 202102, 202103, 202104, 202105)
-  param_local$train$validation <- c( 202106 )
+  param_local$train$training <- c( 202101, 202102, 202103)
+  param_local$train$validation <- c( 202105 )
   param_local$train$undersampling <- 0.1
   param_local$train$gan1 <- 273000
   param_local$train$gan0 <-  -7000
@@ -297,14 +297,15 @@ TS_strategy_base8 <- function( pinputexps )
   param_local$future <- c(202108)
   
   param_local$final_train$undersampling <- 0.03
-  param_local$final_train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
+  param_local$final_train$clase_minoritaria <- c( "BAJA+2")
   param_local$final_train$training <- c(
     202106, 202105, 202104, 202103, 202102, 202101, 
-    202012, 202011, 202010, 202009, 202008, 202007, 
-    # 202006  Excluyo por variables rotas
-    202005, 
+    202012, 202011, 
+    #202010, 202009, 202008, 202007, 
+    202006,  # No lo excluyo porque denicolay puede tener razón.
+    #202005, 
     #202004, 202003, Excluyo por recomendacion de experimentos anteriores
-    202002, 202001,
+    #202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
@@ -318,23 +319,24 @@ TS_strategy_base8 <- function( pinputexps )
   
   param_local$train$training <- c(
     202104, 202103, 202102, 202101, 
-    202012, 202011, 202010, 202009, 202008, 202007, 
-    # 202006  Excluyo por variables rotas
-    202005, 
+    202012, 202011, 
+    # 202010, 202009, 202008, 202007, 
+    202006,  # No lo excluyo porque denicolay puede tener razón.
+    #202005, 
     #202004, 202003, Excluyo por recomendacion de experimentos anteriores
-    202002, 202001,
+    #202002, 202001,
     201912, 201911,
     # 201910 Excluyo por variables rotas
     201909, 201908, 201907, 201906,
     # 201905  Excluyo por variables rotas
-    201904, 201903
+    201904, 201903, 201902, 201901
   )
   
   
   # Atencion  0.2  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling
-  param_local$train$undersampling <- 0.03
-  param_local$train$clase_minoritaria <- c( "BAJA+1", "BAJA+2")
+  param_local$train$undersampling <- 0.8
+  param_local$train$clase_minoritaria <- c( "BAJA+2")
   
   return( exp_correr_script( param_local ) ) # linea fija
 }
@@ -354,7 +356,7 @@ HT_tuning_semillerio <- function( pinputexps, semillerio, bo_iteraciones, bypass
   # En caso que se haga cross validation, se usa esta cantidad de folds
   param_local$lgb_crossvalidation_folds <- 5
   
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
   param_local$train$positivos <- c( "BAJA+2")
   param_local$train$gan1 <- 273000
   param_local$train$gan0 <-  -7000
@@ -428,7 +430,7 @@ FM_final_models_lightgbm_semillerio <- function( pinputexps, ranks, semillerio, 
   # Que modelos quiero, segun su iteracion_bayesiana de la Bayesian Optimizacion, SIN ordenar
   param_local$modelos_iteracion <- c()
   
-  param_local$train$clase01_valor1 <- c( "BAJA+2", "BAJA+1")
+  param_local$train$clase01_valor1 <- c( "BAJA+2")
   param_local$train$positivos <- c( "BAJA+2")
   
   # default 20 semillas
@@ -480,7 +482,7 @@ KA_evaluate_kaggle_semillerio <- function( pinputexps )
 # Que predice 202107 donde conozco la clase
 # y ya genera graficos
 
-g02_semillerio_competencia2 <- function( pnombrewf )
+g03_semillerio_competencia2 <- function( pnombrewf )
 {
   param_local <- exp_wf_init( pnombrewf ) # linea fija
   
@@ -498,7 +500,7 @@ g02_semillerio_competencia2 <- function( pnombrewf )
   
   # la Bayesian Optimization con el semillerio dentro
   ht <- HT_tuning_semillerio(
-    semillerio = 80, # semillerio dentro de la Bayesian Optim
+    semillerio = 50, # semillerio dentro de la Bayesian Optim
     bo_iteraciones = 40  # iteraciones inteligentes, apenas 10
   )
   
@@ -506,7 +508,7 @@ g02_semillerio_competencia2 <- function( pnombrewf )
   fm <- FM_final_models_lightgbm_semillerio( 
     c(ht, ts8), # los inputs
     ranks = c(1), # 1 = el mejor de la bayesian optimization
-    semillerio = 80,   # cantidad de semillas finales
+    semillerio = 50,   # cantidad de semillas finales
     repeticiones_exp = 1  # cantidad de repeticiones del semillerio
   )
   
@@ -521,4 +523,5 @@ g02_semillerio_competencia2 <- function( pnombrewf )
 # Aqui comienza el programa
 
 # llamo al workflow con future = 202108
-g02_semillerio_competencia2()
+g03_semillerio_competencia2()
+
