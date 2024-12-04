@@ -1,0 +1,21 @@
+Instrucción para replicar submit entrega competencia 3.
+
+1) 
+Correr estos 11 modelos: 
+modelos = [
+"g01_semillerio_competencia3-005",
+"g02_semillerio_competencia3-002",
+"g03_semillerio_competencia3-001",
+"ensamble_g01_comp3-001",
+"ensamble_g02_comp3-002",
+"ensamble_g03_comp3-001", 
+"ensamble_g06_comp3-001",
+"ensamble_g08_comp3-001",
+"ensamble_g09_comp3-002",
+"ensamble_g10_comp3-003",
+"ensamble_g11_comp3-002"]
+
+2) Agarrar la predicción promedio que generó cada uno de ellos, y promediarla. 
+**Yo lo hice con el siguiente script: "src/competencia_03/bucket-connector-semillerio.ipynb" que se conecta a mi bucket automáticamente (si lo desea Gustavo / Joaquín, puedo compartir las credenciales).
+
+3) Subir el promedio de los promedios de los 11 modelos con corte en 11mil. 
