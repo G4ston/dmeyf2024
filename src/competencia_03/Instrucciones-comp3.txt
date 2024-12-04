@@ -1,6 +1,13 @@
 Instrucción para replicar submit entrega competencia 3.
 
-1) 
+1) Calcular clase ternaria con siguiente script: 
+src/wf-etapas/generar_dataset.R
+
+2) Dataset con eliminación de BAJA+1 para semillerio:
+src/wf-etapas/eliminar_baja1_semillerio.R
+Este dataset se debe utilizar según corresponda el modelo a correr.
+
+3) 
 Correr estos 11 modelos: 
 modelos = [
 "src/competencia_03/wflow_g01_semillerio_competencia3-005.R",
@@ -15,7 +22,7 @@ modelos = [
 "src/competencia_03/wflow_ensamble_g10_comp3-003.R",
 "src/competencia_03/wflow_ensamble_g11_comp3-002.R"]
 
-2) Agarrar la predicción promedio que generó cada uno de ellos, y promediarlas. 
+4) Agarrar la predicción promedio que generó cada uno de ellos, y promediarlas. 
 **Yo lo hice con el siguiente script: "src/competencia_03/bucket-connector-semillerio.ipynb" que se conecta a mi bucket automáticamente (si lo desea Gustavo / Joaquín, puedo compartir las credenciales).
 
-3) Subir el promedio de los promedios de los 11 modelos con corte en 11mil. 
+5) Subir el promedio de los promedios de los 11 modelos con corte en 11mil. 
